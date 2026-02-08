@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE MOMENT SANYA | Бронирование</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text: #f5f5f0;
+            --text-muted: #888;
+            --accent: #c9a86c;
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Noto Serif SC', serif;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* 背景图 */
+        .hero-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2000') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* 左侧内容 */
+        .room-details {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 450px;
+            background: url('https://images.unsplash.com/photo-1590490359683-658d3d23f972?q=80&w=1000') center/cover;
+            margin-bottom: 40px;
+        }
+
+        .description {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.9;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .feature-item {
+            padding: 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+        }
+
+        .feature-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .feature-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* 右侧预订卡片 */
+        .booking-form {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            position: sticky;
+            top: 40px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .form-header p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--accent);
+        }
+
+        .form-group select option {
+            background: var(--bg);
+        }
+
+        .price-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+        }
+
+        .price-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .price-value {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            color: var(--accent);
+        }
+
+        .price-rub {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .discount-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            background: rgba(201, 168, 108, 0.15);
+            color: var(--accent);
+            border-radius: 2px;
+            margin-left: 8px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            margin-top: 32px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.4s;
+            font-family: inherit;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .wechat-contact {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .wechat-contact span {
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            .booking-form { position: static; }
+            .features { grid-template-columns: 1fr; }
+            .main-image { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-bg"></div>
+    
+    <div class="container">
+        <div class="room-details">
+            <div class="brand">The Moment Sanya</div>
+            <h1>Ocean Villa</h1>
+            <p class="subtitle">Уединение в этот момент</p>
+            
+            <div class="main-image"></div>
+            
+            <div class="description">
+                <p>坐落于海棠湾一线海景，私享50m²超大露台。意大利品牌家具定制，中医理疗按摩池浸润身心。24小时俄语管家服务，让您在东方海岸感受家的温暖。</p>
+                <br>
+                <p style="font-style: italic; color: var(--text-muted);">Расположен на первой линии бухты Хайтан. Частная терраса 50м². Итальянская мебель. Спа-бассейн ТКМ. Русскоговорящий дворецкий 24/7.</p>
+            </div>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <h3>Private Terrace</h3>
+                    <p>50m² ocean view terrace<br>Частная терраса с видом на море</p>
+                </div>
+                <div class="feature-item">
+                    <h3>TCM Spa</h3>
+                    <p>Healing pool & massage<br>Бассейн и массаж ТКМ</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Russian Service</h3>
+                    <p>24h butler in Russian<br>Русскоговорящий дворецкий</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Transfer</h3>
+                    <p>Airport pickup service<br>Трансфер из аэропорта</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="booking-form">
+            <div class="form-header">
+                <h2>Reserve</h2>
+                <p>Бронирование</p>
+            </div>
+            
+            <div class="form-group">
+                <label>Dates / Даты</label>
+                <input type="text" placeholder="Check-in / Заезд" onfocus="(this.type='date')" id="checkin">
+            </div>
+            
+            <div class="form-group">
+                <label>Nights / Ночей <span id="discount-tag" class="discount-tag"></span></label>
+                <select id="nights" onchange="calculatePrice()">
+                    <option value="1">1 Night — ¥1,800</option>
+                    <option value="3">3 Nights — ¥4,860 (10% OFF)</option>
+                    <option value="7">7 Nights — ¥10,080 (20% OFF)</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Guests / Гости</label>
+                <select>
+                    <option>1 Adult / Взрослый</option>
+                    <option selected>2 Adults / Взрослых</option>
+                    <option>Family / Семья</option>
+                </select>
+            </div>
+            
+            <div class="price-section">
+                <div class="price-row">
+                    <span class="price-label">Total / Итого</span>
+                    <span class="price-value" id="cny-price">¥ 1,800</span>
+                </div>
+                <div class="price-rub" id="rub-price">≈ 23,400 RUB</div>
+            </div>
+            
+            <button class="submit-btn" onclick="submitBooking()">Confirm / Подтвердить</button>
+            
+            <p class="note">
+                No prepayment required<br>
+                Для гостей из России предоплата не требуется
+            </p>
+            
+            <div class="wechat-contact">
+                <span>WeChat: MomentSanya_2026</span>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const basePrice = 1800;
+    const rubRate = 13.0;
+
+    function calculatePrice() {
+        const nights = document.getElementById('nights').value;
+        let discount = 1;
+        let tag = '';
+        
+        if (nights == '3') { discount = 0.9; tag = '10% OFF'; }
+        if (nights == '7') { discount = 0.8; tag = '20% OFF'; }
+        
+        document.getElementById('discount-tag').textContent = tag;
+        
+        const totalCNY = Math.round(basePrice * parseInt(nights) * discount);
+        const totalRUB = Math.round(totalCNY * rubRate);
+        
+        document.getElementById('cny-price').textContent = '¥ ' + totalCNY.toLocaleString();
+        document.getElementById('rub-price').textContent = '≈ ' + totalRUB.toLocaleString() + ' RUB';
+    }
+
+    function submitBooking() {
+        alert('Booking request sent!\n\nМы свяжемся с вами в течение 15 минут.\n我们将于15分钟内联系您。');
+    }
+</script>
+</body>
+</html>

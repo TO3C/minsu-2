@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水墨之间 | Between Ink</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700&family=Noto+Serif+RU:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f3ef;
+            --ink: #1a1a1a;
+            --ink-light: #4a4a4a;
+            --gold: #9d8b6e;
+            --paper: #e8e4dc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: var(--bg);
+            color: var(--ink);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* 水墨动画背景 */
+        .ink-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(157, 139, 110, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(26, 26, 26, 0.03) 0%, transparent 40%),
+                var(--bg);
+        }
+
+        .ink-bg::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2000') center/cover;
+            opacity: 0.08;
+            filter: grayscale(100%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* 顶部印章效果 */
+        .header {
+            padding: 60px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .brand-seal {
+            width: 80px;
+            height: 80px;
+            border: 3px solid var(--ink);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            writing-mode: vertical-rl;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 50px;
+        }
+
+        .nav a {
+            color: var(--ink-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 1px;
+            background: var(--ink);
+            transition: 0.3s;
+        }
+
+        .nav a:hover {
+            color: var(--ink);
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        /* 主视觉区 */
+        .hero {
+            min-height: 80vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            padding: 100px 0;
+        }
+
+        .hero-text {
+            padding-right: 40px;
+        }
+
+        .chinese-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            letter-spacing: 10px;
+        }
+
+        .english-title {
+            font-family: 'Noto Serif RU', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--ink-light);
+            margin-bottom: 40px;
+        }
+
+        .separator {
+            width: 60px;
+            height: 1px;
+            background: var(--ink);
+            margin: 40px 0;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: var(--ink-light);
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .ru-text {
+            font-family: 'Noto Serif RU', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--gold);
+            line-height: 1.9;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 20px 50px;
+            border: 1px solid var(--ink);
+            color: var(--ink);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            transition: 0.4s;
+            margin-top: 20px;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--ink);
+            color: var(--bg);
+        }
+
+        .hero-image {
+            position: relative;
+            height: 600px;
+        }
+
+        .image-frame {
+            position: absolute;
+            top: 0; right: 0;
+            width: 85%;
+            height: 85%;
+            background: url('https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=1000') center/cover;
+            filter: sepia(20%) contrast(0.9);
+        }
+
+        .image-frame::after {
+            content: '';
+            position: absolute;
+            top: 30px; left: 30px; right: -30px; bottom: -30px;
+            border: 1px solid var(--ink);
+            z-index: -1;
+        }
+
+        /* 特点展示 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(26, 26, 26, 0.1);
+            margin: 100px 0;
+        }
+
+        .feature {
+            background: var(--bg);
+            padding: 60px 40px;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .feature:hover {
+            background: var(--paper);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            opacity: 0.6;
+        }
+
+        .feature h3 {
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 0.8rem;
+            color: var(--ink-light);
+        }
+
+        /* 底部 */
+        .footer {
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid rgba(26, 26, 26, 0.1);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            margin-bottom: 30px;
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; gap: 60px; padding: 60px 0; }
+            .hero-text { padding-right: 0; }
+            .hero-image { height: 400px; order: -1; }
+            .features { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 0 20px; }
+            .header { flex-direction: column; gap: 30px; align-items: center; }
+            .nav { gap: 20px; }
+            .features { grid-template-columns: 1fr; }
+            .chinese-title { letter-spacing: 5px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="ink-bg"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="brand-seal">水墨之间</div>
+            <nav class="nav">
+                <a href="#">首页</a>
+                <a href="#">空间</a>
+                <a href="#">体验</a>
+                <a href="#">预订</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <div class="hero-text">
+                <h2 class="chinese-title">静<br>逸<br>山<br>海</h2>
+                <p class="english-title">Tranquility between ink and sea</p>
+                <div class="separator"></div>
+                <p class="description">
+                    在东方意境与西式美学之间，寻得一方静谧。
+                    三亚海湾的浪声，与千年康养智慧在此相遇。
+                </p>
+                <p class="ru-text">
+                    Между восточной эстетикой и западной красотой<br>
+                    находим тихое убежище у берега южного моря.<br>
+                    Здесь встречаются волны залива и мудрость тысячелетнего оздоровления.
+                </p>
+                <a href="booking-moment.html" class="cta-btn">预约体验</a>
+            </div>
+            <div class="hero-image">
+                <div class="image-frame"></div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">🌊</div>
+                <h3>私享海域</h3>
+                <p>Private Beach</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🧘</div>
+                <h3>中医理疗</h3>
+                <p>TCM Spa</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🏛️</div>
+                <h3>东方美学</h3>
+                <p>Oriental Design</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👨‍✈️</div>
+                <h3>俄式服务</h3>
+                <p>Russian Service</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-logo">水墨之间</div>
+            <p class="footer-text">三亚 · 您的东方静谧之所</p>
+        </footer>
+    </div>
+</body>
+</html>
