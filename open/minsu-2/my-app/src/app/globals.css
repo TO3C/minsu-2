@@ -1,0 +1,345 @@
+@import "tailwindcss";
+
+:root {
+  /* Nature Distilled - 自然提炼写实风格 */
+  --background: #F5F0E1;
+  --foreground: #3D2914;
+  
+  /* 主色调 - 温暖大地色系 */
+  --terracotta: #C67B5C;
+  --terracotta-light: #D4917A;
+  --terracotta-dark: #A65D42;
+  --sand: #D4C4A8;
+  --sand-light: #E5D9C4;
+  --sand-dark: #B8A68C;
+  --clay: #B5651D;
+  --clay-light: #CC7A33;
+  --cream: #F5F0E1;
+  --cream-dark: #E8E0D0;
+  --olive: #6B7B3C;
+  --olive-light: #8B9B5C;
+  
+  /* 文字颜色 */
+  --text-primary: #3D2914;
+  --text-secondary: #6B5B4F;
+  --text-muted: #9B8B7F;
+  
+  /* 阴影 - 真实自然阴影 */
+  --shadow-sm: 0 1px 2px rgba(61, 41, 20, 0.05);
+  --shadow-md: 0 4px 6px rgba(61, 41, 20, 0.08), 0 2px 4px rgba(61, 41, 20, 0.04);
+  --shadow-lg: 0 10px 20px rgba(61, 41, 20, 0.1), 0 4px 8px rgba(61, 41, 20, 0.06);
+  --shadow-xl: 0 20px 40px rgba(61, 41, 20, 0.12), 0 8px 16px rgba(61, 41, 20, 0.08);
+  
+  /* 边框 */
+  --border-color: rgba(61, 41, 20, 0.1);
+  --border-color-light: rgba(61, 41, 20, 0.06);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-terracotta: var(--terracotta);
+  --color-terracotta-light: var(--terracotta-light);
+  --color-terracotta-dark: var(--terracotta-dark);
+  --color-sand: var(--sand);
+  --color-sand-light: var(--sand-light);
+  --color-sand-dark: var(--sand-dark);
+  --color-clay: var(--clay);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-olive: var(--olive);
+  --color-olive-light: var(--olive-light);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* 添加微妙的纸张纹理 */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: soft-light;
+  }
+}
+
+@layer components {
+  /* 写实卡片效果 - 多层阴影创造深度 */
+  .card-realistic {
+    @apply rounded-xl p-6;
+    background: linear-gradient(145deg, #FAF8F3 0%, #F0EBE0 100%);
+    box-shadow: 
+      0 1px 1px rgba(61, 41, 20, 0.04),
+      0 2px 2px rgba(61, 41, 20, 0.04),
+      0 4px 4px rgba(61, 41, 20, 0.04),
+      0 8px 8px rgba(61, 41, 20, 0.04),
+      0 16px 16px rgba(61, 41, 20, 0.04);
+    border: 1px solid rgba(61, 41, 20, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-realistic:hover {
+    box-shadow: 
+      0 2px 2px rgba(61, 41, 20, 0.05),
+      0 4px 4px rgba(61, 41, 20, 0.05),
+      0 8px 8px rgba(61, 41, 20, 0.05),
+      0 16px 16px rgba(61, 41, 20, 0.05),
+      0 32px 32px rgba(61, 41, 20, 0.05);
+    transform: translateY(-4px);
+  }
+  
+  /* 导航栏 - 自然材质感 */
+  .nav-realistic {
+    background: linear-gradient(180deg, rgba(245, 240, 225, 0.95) 0%, rgba(245, 240, 225, 0.85) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(61, 41, 20, 0.08);
+    box-shadow: 0 1px 3px rgba(61, 41, 20, 0.05);
+  }
+  
+  /* 按钮样式 - 写实质感 */
+  .btn-primary {
+    @apply px-8 py-4 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(145deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+    color: white;
+    box-shadow: 
+      0 2px 4px rgba(198, 123, 92, 0.3),
+      0 4px 8px rgba(198, 123, 92, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(145deg, var(--terracotta-light) 0%, var(--terracotta) 100%);
+    box-shadow: 
+      0 4px 8px rgba(198, 123, 92, 0.4),
+      0 8px 16px rgba(198, 123, 92, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .btn-secondary {
+    @apply px-8 py-4 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(145deg, var(--sand) 0%, var(--sand-dark) 100%);
+    color: var(--text-primary);
+    box-shadow: 
+      0 2px 4px rgba(180, 166, 140, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  
+  .btn-secondary:hover {
+    background: linear-gradient(145deg, var(--sand-light) 0%, var(--sand) 100%);
+    box-shadow: 
+      0 4px 8px rgba(180, 166, 140, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  /* 渐变背景 - 自然色调 */
+  .gradient-warm {
+    background: linear-gradient(135deg, var(--terracotta) 0%, var(--clay) 100%);
+  }
+  
+  .gradient-sand {
+    background: linear-gradient(135deg, var(--sand-light) 0%, var(--sand) 50%, var(--sand-dark) 100%);
+  }
+  
+  .gradient-cream {
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+  }
+  
+  /* 文字渐变 */
+  .text-gradient-warm {
+    background: linear-gradient(135deg, var(--terracotta) 0%, var(--clay) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* 图片容器 - 写实边框 */
+  .image-frame {
+    @apply rounded-lg overflow-hidden;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.06),
+      0 4px 6px rgba(61, 41, 20, 0.1);
+    border: 1px solid rgba(61, 41, 20, 0.1);
+  }
+  
+  /* 标签样式 */
+  .tag-realistic {
+    @apply px-3 py-1 rounded-full text-sm font-medium;
+    background: linear-gradient(145deg, var(--olive) 0%, var(--olive-light) 100%);
+    color: white;
+    box-shadow: 0 2px 4px rgba(107, 123, 60, 0.3);
+  }
+  
+  /* 表单输入框 - 真实质感 */
+  .input-realistic {
+    @apply w-full px-4 py-3 rounded-lg outline-none transition-all;
+    background: linear-gradient(145deg, #FFFFFF 0%, #FAF8F3 100%);
+    border: 1px solid rgba(61, 41, 20, 0.12);
+    box-shadow: inset 0 2px 4px rgba(61, 41, 20, 0.04);
+    color: var(--text-primary);
+  }
+  
+  .input-realistic:focus {
+    border-color: var(--terracotta);
+    box-shadow: 
+      inset 0 2px 4px rgba(61, 41, 20, 0.04),
+      0 0 0 3px rgba(198, 123, 92, 0.15);
+  }
+  
+  /* 分隔线 - 自然渐变 */
+  .divider-natural {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(61, 41, 20, 0.15) 50%, transparent 100%);
+  }
+  
+  /* 区块背景 - 纸张质感 */
+  .section-paper {
+    background: linear-gradient(180deg, #FAF8F3 0%, #F5F0E1 100%);
+    position: relative;
+  }
+  
+  .section-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  /* 动画 */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* 文字效果 */
+  .text-shadow-soft {
+    text-shadow: 0 2px 4px rgba(61, 41, 20, 0.1);
+  }
+  
+  /* 玻璃拟态变体 - 自然色调 */
+  .glass-natural {
+    background: rgba(245, 240, 225, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(61, 41, 20, 0.08);
+  }
+  
+  /* 写实风格图片容器 */
+  .photo-realistic {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 0, 0, 0.1),
+      0 8px 16px rgba(61, 41, 20, 0.15),
+      0 16px 32px rgba(61, 41, 20, 0.1);
+  }
+  
+  .photo-realistic::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .photo-realistic::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  /* 图片叠加文字效果 */
+  .photo-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(
+      to top,
+      rgba(61, 41, 20, 0.8) 0%,
+      rgba(61, 41, 20, 0.4) 50%,
+      transparent 100%
+    );
+    color: white;
+    z-index: 3;
+  }
+  
+  /* 房间类型图片背景 */
+  .room-ocean-view {
+    background: linear-gradient(135deg, #87CEEB 0%, #4682B4 50%, #1E3A5F 100%);
+  }
+  
+  .room-garden-view {
+    background: linear-gradient(135deg, #90EE90 0%, #228B22 50%, #1B4D1B 100%);
+  }
+  
+  .room-suite {
+    background: linear-gradient(135deg, #D4AF37 0%, #B8860B 50%, #8B6914 100%);
+  }
+  
+  /* 海滩风景 */
+  .scene-beach {
+    background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 40%, #F5E6D3 60%, #D4A574 100%);
+  }
+  
+  /* 民宿外观 */
+  .scene-hotel {
+    background: linear-gradient(135deg, #F5E6D3 0%, #D4C4A8 30%, #C67B5C 70%, #A65D42 100%);
+  }
+  
+  /* 地图位置 */
+  .scene-map {
+    background: linear-gradient(135deg, #E8F4E8 0%, #C8E6C9 50%, #A5D6A7 100%);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
